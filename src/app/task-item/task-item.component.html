@@ -1,0 +1,16 @@
+<div class="task-item" (click)="onTaskClicked()" [class.completed]="task.completed">
+    <div class="check-box">
+        <i class="material-icons">check</i>
+    </div>
+    <div class="task-text">
+        {{ task.text }}
+    </div>
+    <div class="task-controls-box" (click)="$event.stopPropagation()">
+        <div class="task-control-button" appToolTip="Edit your task" (click)="onEditClicked()">
+            <i class="material-icons">edit</i>
+        </div>
+        <div class="task-control-button is-dangerous" appTooltip="Delete your task" (click)="onDeleteClicked()">
+            <i class="material-icons">delete</i>
+        </div>
+    </div>
+</div>

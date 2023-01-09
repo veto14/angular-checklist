@@ -1,0 +1,43 @@
+<section class="heading-section">
+    <h1 class="title is-2 has-text-centered">Tasks</h1>
+</section>
+
+<div class="container add-task-box-container">
+    <div class="add-task-box">
+        <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+            <h2 class="title is-5">New Task</h2>
+            <div class="field is-grouped" style="margin: 0">
+                <p class="control is-expanded">
+                    <input ngModel #taskTextField="ngModel" required minlength="2" name="text" class="input" type="text" placeholder="Type your task here...">
+                </p>
+                <p class="control">
+                    <button class="button alt-gradient-button">
+                        <i class="material-icons">add</i>
+                        Task
+                    </button>
+                </p>
+            </div>
+            <div *ngIf="form?.touched && form?.invalid && showValidationErrors">
+                <p class=" help is-danger" *ngIf="form.controls['text'].errors?.['required']">Please insert the text corresponding to your desired task</p>
+                <p class="help is-danger" *ngIf="form.controls['text'].errors?.['minlength']">Tasks need to be at least 2 characters long</p>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="tasks-list">
+            
+            <app-task-item *ngFor="let task of tasks" 
+            [task]="task" 
+            (taskClicked)="toggleCompleted(task)"
+            (editClicked)="editTask(task)"
+            (deleteClicked)="deleteTask(task)"
+            ></app-task-item>
+
+        </div>
+    </div>
+</section>
